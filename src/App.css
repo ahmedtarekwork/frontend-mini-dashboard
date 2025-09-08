@@ -1,4 +1,36 @@
 @import "tailwindcss";
 
 @layer base {
+  a,
+  button {
+    @apply block;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  #app-sidebar .button.active {
+    @apply scale-105;
+  }
+  #app-sidebar .button.active:not(:hover) {
+    @apply !bg-red-700;
+  }
+
+  #app-sidebar .button > span:first-child {
+    translate: -100% 0;
+    scale: 0;
+    transition: 0.3s;
+    margin-right: 6px;
+  }
+  #app-sidebar .button.active span {
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@layer components {
+  .button {
+    @apply p-2 text-white bg-red-600 rounded-md font-semibold transition-[background-color] duration-[250ms] hover:bg-red-800;
+  }
 }
