@@ -13,8 +13,6 @@ const SIDEBAR_BORDER_WIDTH = 3;
 const Sidebar = () => {
   const isMobile = innerWidth <= 500;
 
-  console.log(!isMobile);
-
   const [open, setOpen] = useState(!isMobile);
 
   const sidebarRef = useRef<HTMLElement>(null);
@@ -49,13 +47,8 @@ const Sidebar = () => {
   return (
     <aside
       id="app-sidebar"
-      className={`max-[500px]:fixed bg-white max-[500px]:min-h-screen max-[500px]:w-full max-[500px]:border-0 border-r-${SIDEBAR_BORDER_WIDTH} border-r-red-400 relative`}
+      className={`max-[500px]:fixed z-50 bg-white max-[500px]:min-h-screen max-[500px]:w-full max-[500px]:border-0 border-r-${SIDEBAR_BORDER_WIDTH} border-r-red-400 relative`}
       style={{
-        // translate: open
-        //   ? "0 0"
-        //   : `calc(-100% + ${isMobile ? SIDEBAR_BORDER_WIDTH : "0"}px) 0`,
-        // marginRight:
-        //   !open && isMobile ? `-${sidebarRef.current?.offsetWidth || 0}px` : 0,
         transition: "0.3s",
       }}
       ref={sidebarRef}

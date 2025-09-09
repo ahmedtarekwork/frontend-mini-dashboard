@@ -9,7 +9,7 @@ const MainLayout = () => {
     <main className="flex gap-2 min-h-screen" id="home-page">
       <Sidebar />
 
-      <div className="flex-1">
+      <div className="flex-1 p-4 pl-11">
         <Outlet />
       </div>
     </main>

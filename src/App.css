@@ -1,18 +1,37 @@
 @import "tailwindcss";
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    @apply bg-red-700 text-white;
+  }
+
+  img,
   a,
   button {
     @apply block;
+  }
+
+  input {
+    @apply rounded-md p-0.5 border border-red-500;
+  }
+  input:is([type="checkbox"], [type="radio"]) {
+    @apply hidden;
   }
 
   button {
     @apply cursor-pointer;
   }
 
-  #app-sidebar .button.active {
-    @apply scale-105;
+  @media (min-width: 501px) {
+    #app-sidebar .button.active {
+      @apply scale-105;
+    }
   }
+
   #app-sidebar .button.active:not(:hover) {
     @apply !bg-red-700;
   }
@@ -32,5 +51,27 @@
 @layer components {
   .button {
     @apply p-2 text-white bg-red-600 rounded-md font-semibold transition-[background-color] duration-[250ms] hover:bg-red-800;
+  }
+
+  .text {
+    @apply font-bold text-red-600;
+  }
+
+  .label-box {
+    @apply size-5 border-2 border-red-500 inline-block rounded-sm transition;
+  }
+
+  .label-box img {
+    @apply scale-0 transition duration-300 -rotate-45;
+  }
+
+  label:has(input:is([type="checkbox"], [type="radio"]):checked) .label-box {
+    @apply bg-red-500 shadow-sm shadow-red-800;
+  }
+
+  label:has(input:is([type="checkbox"], [type="radio"]):checked)
+    .label-box
+    img {
+    @apply scale-100 rotate-0;
   }
 }

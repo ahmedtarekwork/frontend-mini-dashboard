@@ -26,7 +26,7 @@ const ToggleSidebarBtn = ({
 
   return (
     <button
-      className={`button bottom-4 max-[500px]:!right-0 absolute transition`}
+      className={`button bottom-20 max-[500px]:!right-0 absolute transition`}
       style={{
         translate: open ? "0 0" : `calc(100% - ${ANIMATE_TOGGLE_BTN_GAP}px) 0`,
         right: `${-TOGGLE_BTN_OUTER_OFFSET}px`,
