@@ -1,7 +1,7 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 // types
-import type { Todo } from "../../utils/types";
+import type { Todo } from "../../common/types";
 
 export type TodosCell = { page: number; todos: Todo[] };
 

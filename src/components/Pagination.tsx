@@ -5,7 +5,7 @@ import type { Dispatch, SetStateAction } from "react";
 import {
   TODOS_PER_PAGE,
   TOTAL_TODOS_COLLECTION_COUNT,
-} from "../utils/constants";
+} from "../common/constants";
 
 type Props = {
   setPage: Dispatch<SetStateAction<number>>;
@@ -23,7 +23,7 @@ const Pagination = ({ setPage, hidden, currentPage }: Props) => {
   };
 
   return (
-    <ul className="border-2 border-red-400 p-3 rounded-lg mt-auto mx-auto mb-4 flex flex-wrap gap-x-2 gap-y-4 max-w-screen overflow-auto">
+    <ul className="w-full border-2 border-red-400 p-3 rounded-lg mt-auto mx-auto mb-4 flex flex-wrap gap-x-2 gap-y-4 max-w-screen overflow-auto">
       {Array.from({
         length: TOTAL_TODOS_COLLECTION_COUNT / TODOS_PER_PAGE,
       }).map((_, i) => {
@@ -35,7 +35,7 @@ const Pagination = ({ setPage, hidden, currentPage }: Props) => {
             <button
               onClick={() => handleChnagePage(page)}
               disabled={isCurrentPage}
-              className={`button size-full px-4 hover:not-[:disabled]:bg-red-400 transition ${
+              className={`button size-full px-4 hover::bg-red-400 transition ${
                 isCurrentPage ? "bg-red-300 cursor-not-allowed" : ""
               }`.trim()}
               title={`get todos for page No. ${page}`}

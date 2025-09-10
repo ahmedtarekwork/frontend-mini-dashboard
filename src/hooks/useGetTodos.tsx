@@ -9,10 +9,10 @@ import useDispatch from "./redux/useDispatch";
 import { addMoreTodos } from "../store/features/todosSlice";
 
 // types
-import type { Todo } from "../utils/types";
+import type { Todo } from "../common/types";
 
 // constants
-import { TODOS_PER_PAGE } from "../utils/constants";
+import { TODOS_PER_PAGE } from "../common/constants";
 
 const useGetTodos = () => {
   // redux
@@ -37,7 +37,7 @@ const useGetTodos = () => {
       dispatch(addMoreTodos({ page, todos: data }));
 
       if (error) setError("");
-    } catch (e) {
+    } catch (error) {
       setError(
         "Something went wrong while get the todos, Please try again later."
       );

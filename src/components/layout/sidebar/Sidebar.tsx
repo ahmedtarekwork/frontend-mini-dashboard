@@ -10,6 +10,11 @@ import SidebarItem from "./SidebarItem";
 const TOGGLE_BTN_OUTER_OFFSET = 10;
 const SIDEBAR_BORDER_WIDTH = 3;
 
+const sidebarItems = [
+  { text: "All todos", to: "/", id: 1 },
+  { text: "Create a new todo", to: "/todo-form", id: 2 },
+];
+
 const Sidebar = () => {
   const isMobile = innerWidth <= 500;
 
@@ -60,9 +65,10 @@ const Sidebar = () => {
         TOGGLE_BTN_OUTER_OFFSET={TOGGLE_BTN_OUTER_OFFSET}
       />
 
-      <ul className="p-2 space-y-2">
-        <SidebarItem text="All todos" to="/" />
-        <SidebarItem text="Create a new todo" to="/todo-form" />
+      <ul className="p-4 space-y-2">
+        {sidebarItems.map(({ id, ...item }) => (
+          <SidebarItem key={id} setOpen={setOpen} {...item} />
+        ))}
       </ul>
     </aside>
   );
