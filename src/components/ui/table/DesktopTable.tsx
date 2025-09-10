@@ -6,7 +6,7 @@ import TodoCell from "./TodoCell";
 
 const DesktopTable = ({ todos, page }: TableProps) => {
   return (
-    <div className="hidden md:block overflow-x-auto">
+    <div className="max-[810px]:hidden overflow-x-auto">
       <table className="w-full">
         <thead className="border-b-red-700 border-b bg-red-50">
           <tr className="[&>*]:px-6 [&>*]:py-4 [&>*]:text-left [&>*]:text-sm [&>*]:font-bold [&>*]:text-red-700">

@@ -49,7 +49,7 @@ const Table = ({ todos, page }: TableProps) => {
       )}
 
       {!!filteredTodos.length && (
-        <div className="w-full overflow-hidden rounded-lg border border-red-700 shadow-sm">
+        <div className="overflow-hidden rounded-lg border border-red-700 shadow-sm">
           <DesktopTable todos={filteredTodos} page={page} />
           <MobileTable todos={filteredTodos} page={page} />
         </div>

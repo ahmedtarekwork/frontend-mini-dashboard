@@ -7,7 +7,7 @@ import type { TableProps } from "./Table";
 
 const MobileTable = ({ todos, page }: TableProps) => {
   return (
-    <div className="md:hidden">
+    <div className="min-[810px]:hidden">
       {todos.map((todo) => {
         const { completed, id, title, userId } = todo;
 

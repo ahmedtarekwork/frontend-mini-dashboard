@@ -30,7 +30,7 @@ const Sidebar = () => {
   return (
     <aside
       id="app-sidebar"
-      className={`sticky min-h-screen h-screen min-[501px]:top-0 min-[501px]:left-0 max-[500px]:fixed z-50 bg-white max-[500px]:w-full`}
+      className={`shrink-0 sticky min-h-screen h-screen min-[501px]:top-0 min-[501px]:left-0 max-[500px]:fixed z-50 bg-white max-[500px]:w-full`}
       style={{
         transition: "0.3s",
       }}
@@ -44,7 +44,7 @@ const Sidebar = () => {
       />
 
       <ul
-        className={`p-4 h-full flex flex-col gap-2 max-[500px]:border-0 border-r-red-400`}
+        className={`p-4 h-full flex flex-col gap-2 max-[500px]:!border-0 border-r-red-400`}
         style={{
           borderRightWidth: SIDEBAR_BORDER_WIDTH,
           borderRightStyle: "solid",

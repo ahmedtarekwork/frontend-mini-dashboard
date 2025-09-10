@@ -35,7 +35,7 @@ const TodoCellBtnsHolder = ({ page, completed, id, title }: TodoCellProps) => {
     : "bg-green-600 hover:bg-green-700";
 
   return (
-    <div className="flex flex-wrap gap-2 [&>*]:flex-1">
+    <div className="flex flex-wrap gap-2 [&>*]:px-4 [&>*]:flex-1">
       <NavLink
         onClick={(e) => e.stopPropagation()}
         className="button text-center"
