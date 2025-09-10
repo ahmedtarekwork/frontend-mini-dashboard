@@ -52,7 +52,7 @@ mock data comes from JSONPlaceholder API, specifically the todos category.
   - Fetching mock data from JSONPlaceholder with custom hook.
   - Handle loading and error statements.
   - Pagination with caching results with Redux toolkit for fetched data.
-  - Display mock data in a responsive table with action buttons like:
+  - Display mock data in a responsive searchanle table with action buttons like:
     - Button that mark the todo as a completed or pending based on it's status.
     - Button for redirecting to the todo form page to edit the todo, the current info of the todo is placed as default values of the form inputs.
 

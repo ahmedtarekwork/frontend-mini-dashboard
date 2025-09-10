@@ -16,8 +16,9 @@
   }
 
   input {
-    @apply rounded-md border border-red-500 p-2;
+    @apply rounded-md border border-red-500 p-2 placeholder:text-red-500 placeholder:transition focus:placeholder:opacity-0;
   }
+
   input:is([type="checkbox"], [type="radio"]) {
     @apply hidden;
   }

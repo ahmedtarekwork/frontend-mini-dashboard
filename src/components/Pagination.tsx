@@ -31,7 +31,7 @@ const Pagination = ({ setPage, hidden, currentPage }: Props) => {
         const isCurrentPage = currentPage === page;
 
         return (
-          <li key={(i + 1).toString()} className="flex-1">
+          <li key={page.toString()} className="flex-1">
             <button
               onClick={() => handleChnagePage(page)}
               disabled={isCurrentPage}
