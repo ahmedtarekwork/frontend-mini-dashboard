@@ -2,7 +2,7 @@
 import errorIllustrations from "../assets/illustrations/error.svg";
 
 // components
-import TodoCard from "./TodoCard";
+import Table from "./ui/table/Table";
 
 // types
 import type { TodosCell } from "../store/features/todosSlice";
@@ -37,22 +37,11 @@ const DisplayTodos = ({ error, loading, page, todos }: Props) => {
     );
   }
 
-  const currentTodos = todos.find((cell) => cell.page === page);
+  const currentTodos = todos.find((cell) => cell.page === page)?.todos || [];
 
-  if (!currentTodos?.todos.length)
+  if (!currentTodos.length)
     return <h1 className="text">No Todos to show in this page!</h1>;
 
-  return (
-    <ul
-      className="grid gap-3 justify-center"
-      style={{
-        gridTemplateColumns: "repeat(auto-fill, minmax(150px, 0.8fr))",
-      }}
-    >
-      {currentTodos.todos.map((todo) => (
-        <TodoCard page={page} {...todo} key={todo.id} />
-      ))}
-    </ul>
-  );
+  return <Table todos={currentTodos} page={page} />;
 };
 export default DisplayTodos;
