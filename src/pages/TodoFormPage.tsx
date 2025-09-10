@@ -7,10 +7,10 @@ import { useSearchParams } from "react-router";
 // components
 import PageTitle from "../components/ui/PageTitle";
 import InputHolder from "../components/ui/InputHolder";
-import TodoFormBtnsHolder from "../components/TodoFormBtnsHolder";
+import FormBtnsHolder from "../components/ui/FormBtnsHolder";
 
 // hooks
-import useSubmitForm from "../hooks/form/useSubmitForm";
+import useSubmitTodoForm from "../hooks/TodoForm/useSubmitTodoForm";
 
 const TodoFormPage = () => {
   const [searchParams] = useSearchParams();
@@ -24,14 +24,22 @@ const TodoFormPage = () => {
   const isEditMode = !!todoId;
 
   const formRef = useRef<HTMLFormElement>(null);
-  const titleInputRef = useRef<HTMLInputElement>(null);
-  const completedInputRef = useRef<HTMLInputElement>(null);
 
-  const { handler, loading } = useSubmitForm({
-    titleInputRef,
-    completedInputRef,
-    mode: isEditMode ? "edit" : "create",
-  });
+  const handleReset = () => {
+    const form = formRef.current;
+
+    if (!form) return;
+
+    const titleInput = form["todo-title"];
+    const completedInput = form["todo-completed"];
+
+    if (titleInput) titleInput.value = oldTitle;
+    if (completedInput) completedInput.checked = oldCompletedStatus;
+  };
+
+  const { handler, loading } = useSubmitTodoForm(
+    isEditMode ? "edit" : "create"
+  );
 
   useEffect(() => {
     if (!isEditMode) formRef.current?.reset();
@@ -55,7 +63,7 @@ const TodoFormPage = () => {
         <InputHolder
           type="text"
           id="todo-title"
-          ref={titleInputRef}
+          name="todo-title"
           disabled={loading}
           defaultValue={oldTitle || ""}
         >
@@ -66,20 +74,13 @@ const TodoFormPage = () => {
           disabled={loading}
           type="checkbox"
           id="todo-completed"
-          ref={completedInputRef}
+          name="todo-completed"
           defaultChecked={!!oldCompletedStatus}
         >
           Todo Completed:
         </InputHolder>
 
-        <TodoFormBtnsHolder
-          titleInputRef={titleInputRef}
-          completedInputRef={completedInputRef}
-          oldTitle={oldTitle}
-          oldCompletedStatus={oldCompletedStatus}
-          isEditMode={isEditMode}
-          loading={loading}
-        />
+        <FormBtnsHolder loading={loading} customReset={handleReset} />
       </form>
     </div>
   );

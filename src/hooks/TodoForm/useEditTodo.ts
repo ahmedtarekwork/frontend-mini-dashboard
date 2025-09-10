@@ -8,11 +8,13 @@ import { useNavigate, useSearchParams } from "react-router";
 import { toast } from "sonner";
 
 // types
-import type { FormSubmitModeHookProps } from "./useSubmitForm";
+import type { FormSubmitModeHookProps } from "./useSubmitTodoForm";
 import type { Todo } from "../../common/types";
 
 // redux
 import useDispatch from "../redux/useDispatch";
+
+// actions
 import { editTodo } from "../../store/features/todosSlice";
 
 const useEditTodo = () => {

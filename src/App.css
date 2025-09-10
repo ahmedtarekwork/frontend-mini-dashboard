@@ -16,7 +16,7 @@
   }
 
   input {
-    @apply rounded-md p-0.5 border border-red-500;
+    @apply rounded-md border border-red-500 p-2;
   }
   input:is([type="checkbox"], [type="radio"]) {
     @apply hidden;
@@ -45,6 +45,12 @@
   #app-sidebar .button.active span {
     translate: 0 0;
     scale: 1;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply px-4 mx-auto min-md:w-[750px] min-lg:w-[970px] min-xl:w-[1170px];
   }
 }
 

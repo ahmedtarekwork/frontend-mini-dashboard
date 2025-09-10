@@ -1,14 +1,15 @@
 // react
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 // components
 import ToggleSidebarBtn from "./ToggleSidebarBtn";
+import LogoutBtn from "./LogoutBtn";
 
 // icons
 import SidebarItem from "./SidebarItem";
 
-const TOGGLE_BTN_OUTER_OFFSET = 10;
-const SIDEBAR_BORDER_WIDTH = 3;
+// hooks
+import useToggleSidebar from "../../../hooks/useToggleSidebar";
 
 const sidebarItems = [
   { text: "All todos", to: "/", id: 1 },
@@ -16,43 +17,20 @@ const sidebarItems = [
 ];
 
 const Sidebar = () => {
-  const isMobile = innerWidth <= 500;
-
-  const [open, setOpen] = useState(!isMobile);
+  const TOGGLE_BTN_OUTER_OFFSET = 10;
+  const SIDEBAR_BORDER_WIDTH = 3;
 
   const sidebarRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const sidebar = sidebarRef.current;
-
-    if (sidebar) {
-      const watcher = new ResizeObserver(() => {
-        const isMobile = innerWidth <= 500;
-
-        if (!open && !isMobile) {
-          sidebar.style.marginRight = `${-sidebar.offsetWidth}px`;
-        } else sidebar.style.removeProperty("margin-right");
-
-        if (open) {
-          sidebar.style.translate = `0 0`;
-        } else
-          sidebar.style.translate = `calc(-100% + ${
-            !isMobile ? SIDEBAR_BORDER_WIDTH : "0"
-          }px) 0`;
-      });
-
-      watcher.observe(sidebar);
-
-      return () => {
-        watcher.disconnect();
-      };
-    }
-  }, [open]);
+  const { open, setOpen } = useToggleSidebar({
+    sidebarRef,
+    SIDEBAR_BORDER_WIDTH,
+  });
 
   return (
     <aside
       id="app-sidebar"
-      className={`max-[500px]:fixed z-50 bg-white max-[500px]:min-h-screen max-[500px]:w-full max-[500px]:border-0 border-r-${SIDEBAR_BORDER_WIDTH} border-r-red-400 relative`}
+      className={`sticky min-h-screen h-screen min-[501px]:top-0 min-[501px]:left-0 max-[500px]:fixed z-50 bg-white max-[500px]:w-full max-[500px]:border-0 border-r-${SIDEBAR_BORDER_WIDTH} border-r-red-400 relative`}
       style={{
         transition: "0.3s",
       }}
@@ -65,10 +43,11 @@ const Sidebar = () => {
         TOGGLE_BTN_OUTER_OFFSET={TOGGLE_BTN_OUTER_OFFSET}
       />
 
-      <ul className="p-4 space-y-2">
+      <ul className="p-4 h-full flex flex-col gap-2">
         {sidebarItems.map(({ id, ...item }) => (
           <SidebarItem key={id} setOpen={setOpen} {...item} />
         ))}
+        <LogoutBtn />
       </ul>
     </aside>
   );
