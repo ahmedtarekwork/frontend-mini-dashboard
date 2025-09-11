@@ -11,6 +11,7 @@ import { toast } from "sonner";
 export type FormSubmitModeHookProps = {
   title: string;
   completed: boolean;
+  formEl: HTMLFormElement;
 };
 
 const useSubmitTodoForm = (mode: "edit" | "create") => {
@@ -26,20 +27,18 @@ const useSubmitTodoForm = (mode: "edit" | "create") => {
   const handler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.target as HTMLFormElement;
+    const formEl = e.target as HTMLFormElement;
 
-    if (!form) return toast.error("can't submit the form at the momment");
+    if (!formEl) return toast.error("can't submit the form at the momment");
 
-    const title = form["todo-title"].value || "";
-    const completed = !!form["todo-completed"].checked;
+    const title = formEl["todo-title"].value || "";
+    const completed = !!formEl["todo-completed"].checked;
 
     if (!title) {
       return toast.error("todo should have a title");
     }
 
-    await method({ title, completed });
-
-    form.reset();
+    await method({ title, completed, formEl });
   };
 
   return { handler, loading };

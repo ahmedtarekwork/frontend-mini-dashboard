@@ -10,7 +10,11 @@ import type { FormSubmitModeHookProps } from "./useSubmitTodoForm";
 const useCraetNewTodo = () => {
   const [loading, setLoading] = useState(false);
 
-  const sendRequest = async ({ title, completed }: FormSubmitModeHookProps) => {
+  const sendRequest = async ({
+    title,
+    completed,
+    formEl,
+  }: FormSubmitModeHookProps) => {
     const todoInfo = {
       title: title,
       completed,
@@ -30,6 +34,8 @@ const useCraetNewTodo = () => {
       await res.json();
 
       toast.success("todo created successfully");
+
+      formEl.reset();
     } catch (error) {
       toast.error(
         "something went wrong while creating the todo, try again later"

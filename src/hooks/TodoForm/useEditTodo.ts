@@ -32,7 +32,11 @@ const useEditTodo = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const sendRequest = async ({ title, completed }: FormSubmitModeHookProps) => {
+  const sendRequest = async ({
+    title,
+    completed,
+    formEl,
+  }: FormSubmitModeHookProps) => {
     if (title === oldTitle && oldCompletedStatus === completed) {
       return toast.error("you must change todo info before submiting");
     }
@@ -60,6 +64,8 @@ const useEditTodo = () => {
       dispatch(editTodo({ page, todoId, newTodoData }));
 
       toast.success("todo info updated successfully");
+
+      formEl.reset();
 
       navigate("/");
     } catch (error) {
